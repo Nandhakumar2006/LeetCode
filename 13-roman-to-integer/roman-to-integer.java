@@ -1,39 +1,34 @@
 class Solution {
-    HashMap<String, Integer> values = new HashMap<>();
+        HashMap<String,Integer> map = new HashMap<>();
+        Solution(){
+            map.put("I",1);
+            map.put("V",5);
+            map.put("X",10);
+            map.put("L",50);
+            map.put("C",100);
+            map.put("D",500);
+            map.put("M",1000);
 
-    Solution() {
-        values.put("I", 1);
-        values.put("V", 5);
-        values.put("X", 10);
-        values.put("L", 50);
-        values.put("C", 100);
-        values.put("D", 500);
-        values.put("M", 1000);
-
-        values.put("IV", 4);
-        values.put("IX", 9);
-        values.put("XL", 40);
-        values.put("XC", 90);
-        values.put("CD", 400);
-        values.put("CM", 900);
-    }
-
-    public int romanToInt(String s) {
-
-        int integer = 0,i=0;
-
-        while(i<s.length()){
-            if(i<s.length()-1 && values.containsKey(s.substring(i,i+2))){
-                integer+=values.get(s.substring(i,i+2));
-                i+=2;
-                continue;
-            }
-
-            integer+=values.get(String.valueOf(s.charAt(i)));
-            i++;
+            map.put("IV",4);
+            map.put("IX",9);
+            map.put("XL",40);
+            map.put("XC",90);
+            map.put("CD",400);
+            map.put("CM",900);
 
         }
 
-       return integer;
-    }
+        public int romanToInt(String s) {
+            int total=0;
+            for(int i=0;i<s.length();i++){
+                if(i<s.length()-1 && map.containsKey(s.substring(i,i+2))){
+                    total+=map.get(s.substring(i,i+2));
+                    i++;
+                    continue;
+                }
+                total+=map.get(String.valueOf(s.charAt(i)));
+            }
+
+            return total;
+        }
 }
