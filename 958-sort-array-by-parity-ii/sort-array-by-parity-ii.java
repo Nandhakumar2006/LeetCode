@@ -1,6 +1,6 @@
 class Solution {
     public int[] sortArrayByParityII(int[] nums) {
-         int even = 0 , odd = nums.length-1;
+         int even = 0 , odd = 1;
          int[] ans = new int[nums.length];
 
          for(int num : nums){
@@ -10,7 +10,7 @@ class Solution {
             }
             if(num%2!=0){
                 ans[odd]=num;
-                odd-=2;
+                odd+=2;
             }
          }
 
