@@ -1,25 +1,16 @@
 class Solution {
     public String reversePrefix(String s, int k) {
-        char[] prefix = new char[k];
+        char[] arr = s.toCharArray();
+        int left = 0 , right = k-1;
 
-        int idx=0;
-        for(char ch : s.toCharArray()){
-            prefix[idx] = ch;
-            idx++;   
-            if(idx >= k ) break;
+        while(left<right){
+            char temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            right--;
+            left++;
         }
-        StringBuilder reversedPrefix = new StringBuilder();
-        for(char ch : prefix){
-            reversedPrefix.append(ch);
-        }
-        reversedPrefix.reverse();
-        
 
-        StringBuilder remainingString = new StringBuilder(s.substring(k,s.length()));
-
-        reversedPrefix.append(remainingString);
-        String ans = reversedPrefix.toString();
-
-        return ans;
+        return new String(arr);
     }
 }
