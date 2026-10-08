@@ -2,13 +2,13 @@ class Solution {
     public int[] searchRange(int[] nums, int target) {
         
        
-        int first = firstPosition(nums,target);
-        int last = lastPosition(nums,target);
+        int first = Position(nums,target,true);
+        int last = Position(nums,target,false);
 
         return new int[]{first,last};
     }
 
-    int firstPosition(int[] nums , int target ){
+    int Position(int[] nums , int target , boolean isFirst){
         int left = 0 ;
         int right = nums.length -1 ;
         int answer = -1 ;
@@ -16,29 +16,14 @@ class Solution {
         while(left<=right){
             int mid = left + (right-left)/2;
             if(nums[mid]==target){
-                answer = mid ;
-                right = mid - 1 ;
-            }
-            else if ( nums[mid] < target ){
-                left = mid + 1 ;
-            }
-            else{
-                right = mid - 1 ;
-            }
-        }
-        return answer;
-    }
-
-    int lastPosition(int[] nums , int target ){
-        int left = 0 ;
-        int right = nums.length -1 ;
-        int answer = -1 ;
-
-        while(left<=right){
-            int mid = left + (right-left)/2;
-            if(nums[mid]==target){
-                answer = mid ;
-                left = mid + 1 ;
+                if(isFirst){
+                    answer = mid ;
+                    right = mid - 1 ;
+                }
+                else{
+                    answer = mid ;
+                    left = mid + 1 ;
+                }
             }
             else if ( nums[mid] < target ){
                 left = mid + 1 ;
