@@ -1,36 +1,19 @@
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-        int ColLeft = 0, ColRight = matrix.length-1;
+        int n = matrix.length , m = matrix[0].length ;
 
-        while (ColLeft <= ColRight) {
-            int ColMid = (ColLeft + ColRight) / 2;
-            
-            if(matrix[ColMid][0] > target ){
-                ColRight = ColMid - 1;
-            }
-            else if(matrix[ColMid][matrix[0].length-1]  < target){
-                ColLeft = ColMid + 1;
-            }
-            else{
-                int RowLeft = 0, RowRight = matrix[0].length-1;
+        int left = 0 ;
+        int right = n * m -1 ;
 
-                while (RowLeft <= RowRight) {
-                int RowMid = (RowLeft + RowRight) / 2;
-                if (matrix[ColMid][RowMid] == target)
-                    return true;
-                else if (matrix[ColMid][RowMid] < target)
-                    RowLeft = RowMid + 1;
-                else
-                    RowRight = RowMid - 1;
-            }
+        while(left<=right){
+            int mid = ( left + right ) / 2 ;
+            int midValue =  matrix[mid / m][mid % m] ;
 
-            return false;
-            }
-            
-        }
+            if(midValue == target) return true ;
+            else if(midValue < target ) left = mid + 1 ;
+            else right = mid - 1 ;
+        } 
 
-        return false;
-
-        
+        return false ;
     }
 }
